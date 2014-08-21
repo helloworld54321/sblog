@@ -8,6 +8,8 @@
     {% for blog in blogs %}     
         <h3><a href="{% url detailblog blog.id %}">{{ blog.caption }}</a></h3> 
         <div class="row-fluid">
+            {% load markup %}
+            <div>{{ blog.content|markdown:'codehilite' }} </div>
             <div class="span3">
                 <p class="muted"><i class="icon-time"></i><small> {{ blog.publish_time }}</small></p>       
             </div>

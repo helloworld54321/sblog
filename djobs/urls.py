@@ -4,12 +4,12 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.conf import settings
+from djobs.views import home
 
 admin.autodiscover()
 
 urlpatterns = patterns(('djobs.views'),
-    # Examples:
-    # url(r'^$', 'djobs.views.home', name='home'),
+    url(r'^$', home),
     # url(r'^djobs/', include('djobs.foo.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -20,6 +20,10 @@ urlpatterns = patterns(('djobs.views'),
 
 urlpatterns += patterns((''),
     (r'^simpleblog/', include('simpleblog.urls')),
+)
+
+urlpatterns += patterns((''),
+    (r'^accounts/', include('accounts.urls')),
 )
 
 urlpatterns += patterns((''),

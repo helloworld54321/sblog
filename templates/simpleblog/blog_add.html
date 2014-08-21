@@ -21,7 +21,7 @@
 <form action="" method="post">
     {% csrf_token %} 
     <div class="field">
-        <label for="id_caption">Title: </label>
+        <label for="id_caption"> 标题: </label>
         {% if form.caption.errors %}
         <div class="alert alert-error">
             {{ form.caption.errors }}          
@@ -30,7 +30,7 @@
         {{ form.caption }}
     </div>
     <div class="field">        
-        <label for="id_content">Content: </label>
+        <label for="id_content"> 博文: </label>
         {% if form.content.errors %}
         <div class="alert alert-error">
             {{ form.content.errors }}
@@ -39,7 +39,7 @@
         {{ form.content }}
     </div>
     <div class="field">
-        <label for="id_tag">tags</label>
+        <label for="id_tag"> 标签: </label>
         {% if tag.tag_name.errors %}
         <div class="alert alert-error">
             {{ tag.tag_name.errors }}
@@ -47,9 +47,23 @@
         {% endif %}
         {{ tag.tag_name }}
     </div>
+    <div class="field">
+        <label for="id_category"> 类别: </label>
+{#        <select name="category_name">#}
+{#           {% for val,name in category.category_name.choices %}#}
+{#                 <option value="{{ val }}">{{ name }}</option>>#}
+{#            {% endfor %}#}
+{#       </select>#}
+        {% if category.category_name.errors %}
+        <div class="alert alert-error">
+            {{ category.category_name.errors }}
+        </div>
+        {% endif %}
+       {{ category.category_name }}
+    </div>
     <div class="form-actions">
-        <input class="btn btn-primary" type="submit" value="save and add">
-        <a href="#" class="btn">Save as Draft</a>
+        <input class="btn btn-primary" type="submit" value="保存并添加">
+        <a href="#" class="btn">保存草稿</a>
     </div>
 </form>
 {% endblock %}
@@ -57,7 +71,7 @@
 {% block aside %}
 <div id="aside">
     <div class="alert alert-info">
-    <h4>markdown syntax</h4>
+    <h4>markdown 语法</h4>
 </div>
 <div id="hint" class="row well">
     <ul id="mark-prompt">
@@ -125,12 +139,12 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                Other Syntax:
+                其他语法:
             </a>
         </div>
         <div id="collapseOne" class="accordion-body collapse in">
             <div class="accordion-inner">
-            Anim pariatur cliche...
+                陈词滥调...
             </div>
         </div>
     </div>

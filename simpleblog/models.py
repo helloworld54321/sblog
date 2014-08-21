@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Tag(models.Model):
     """docstring for Tags"""
@@ -13,16 +13,6 @@ class Tag(models.Model):
         return self.tag_name
 
 
-class Author(models.Model):
-    """docstring for Author"""
-    name = models.CharField(max_length=30)
-    email = models.EmailField(blank=True)
-    website = models.URLField(blank=True)
-
-    def __unicode__(self):
-        return u'%s' % (self.name)
-
-
 class BlogManager(models.Manager):
     """docstring for BlogManager"""
     def title_count(self, keyword):
@@ -31,8 +21,6 @@ class BlogManager(models.Manager):
     def tag_count(self, keyword):
         return self.filter(tags__icontains=keyword).count()
 
-    def author_count(self, keyword):
-        return self.filter(author__icontains=keyword).count()
 
 class AbstractCategory(models.Model):
     parent = models.ForeignKey('self',blank=True, null=True, related_name='children')
@@ -41,22 +29,20 @@ class AbstractCategory(models.Model):
 
 class Category(AbstractCategory):
     """category manage of blogs"""
-    categoryName = models.CharField(max_length=20)
+    category_name = models.CharField(max_length=20)
     sort = models.IntegerField(default=0, blank=True)
     visible = models.BooleanField(default=False, blank=True)
-    url = models.CharField(max_length=100, default='#')
-    addTime = models.DateTimeField(auto_now_add=True)
+    add_time = models.DateTimeField(auto_now_add=True)
     depth = models.IntegerField(blank=True, default=1)
-    #categoryNo = models.CharField(max_length=20)
 
     def __unicode__(self):
-        return self.categoryName
+        return self.category_name
 
 
 class Blog(models.Model):
     """docstring for Blogs"""
     caption = models.CharField(max_length=50)
-    author = models.ForeignKey(Author)
+    author = models.ForeignKey(User)
     tags = models.ManyToManyField(Tag, blank=True)
     category = models.ForeignKey(Category)
     content = models.TextField()
@@ -79,7 +65,7 @@ class Blog(models.Model):
 
 class Weibo(models.Model):
     massage = models.CharField(max_length=200)
-    author = models.ForeignKey(Author)
+    author = models.ForeignKey(User)
     publish_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):

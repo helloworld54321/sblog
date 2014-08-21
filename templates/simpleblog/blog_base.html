@@ -47,7 +47,6 @@
 {% endblock %}   
 
 {% block header %}
-    {% block categorytree %}{% endblock %}
     {% block menu %}
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -57,10 +56,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <span class="sbrand">SimpleBlog</span>
                 <ul class="nav">
                     <li class="active divider-vertical">           
-                        <a href="{% url bloglist %}">
+                        <a href="{% url home %}">
                             <span class="new-wrapper">
                                 <i class="nav-home"></i>
                                 <i class="nav-new"></i>
@@ -83,14 +81,23 @@
                                 <i class="nav-people"></i>
                                 <i class="nav-new"></i>
                             </span>               
-                            联系方式
+                            联系我们
                         </a>
                 </li>
                 </ul>
-                <div class="pull-right">
+                <div id="navBarRightBlock" class="pull-right">
                     <form class="navbar-search" method="get" action="{% url searchblog %}">
                         <input type="text" class="search-query" name="search" placeholder="Search" required="required">
                     </form>
+                    <div class="user-info">
+                        {% if user.is_authenticated %}
+                            <span class="user-name">欢迎您：{{ user.username }}</span>
+                        {% endif %}
+                        <a class="btn btn-info btn-tweet" href="#myModal" role="button" data-toggle="modal">
+                            <i class="nav-tweet">
+                            </i>
+                        </a>
+                    </div>
                     <ul class="nav">
                         <li class="divider-vertical"></li>
                         <li class="dropdown">
@@ -101,38 +108,40 @@
                             </span> 
                             <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url addblog %}"><i class="icon-plus"></i> add new blog</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li><a href="{% url addblog %}">撰写新博客</a></li>
+                                {% if not user.is_authenticated %}<li><a href="/accounts/login">登陆</a></li>{% endif %}
+                                {% if user.is_authenticated %}<li><li><a href="/accounts/logout">退出</a></li>{% endif %}
                                 <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                             </ul>
                         </li>
                         <li class="divider-vertical"></li>
-                    </ul>  
-                        <a class="btn btn-info btn-tweet" href="#myModal" role="button" data-toggle="modal">
-                            <i class="nav-tweet">
-                                <span class="hide">撰写新推文</span>
-                            </i> 
-                        </a>                             
+                    </ul>
                 </div>                     
             </div>                
         </div>
-    </div>    
+    </div>
+
+    {% block categorytree %}
+
+    {% endblock %}
     <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header twitter-modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Modal header</h3>
+            <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel"> 微博分享 </h3>
         </div>
         <form action="" method="post">{% csrf_token %}
-        <div class="modal-body twitter-modal-body">
-            <textarea name="twitter" class="twitter" id="twitter" required="required"></textarea>
-        </div>
-        <div class="modal-footer twitter-modal-footer">
-            <button class="btn"  data-dismiss="modal" aria-hidden="true">Close</button>
-            <button id="send" class="btn btn-primary" type="submit" name="submit" >Save changes</button>
-        </div>
+            <div class="modal-body twitter-modal-body">
+                <textarea name="twitter" class="twitter" id="twitter" required="required"></textarea>
+            </div>
+            <div class="modal-footer twitter-modal-footer">
+                <button id="send" class="btn btn-primary" type="submit" name="submit" > 发送 </button>
+                <button class="btn"  data-dismiss="modal" aria-hidden="true"> 取消 </button>
+            </div>
         </form>
     </div>
     {% endblock %}
+{% endblock %}
+
+{% block addblog %}
 {% endblock %}

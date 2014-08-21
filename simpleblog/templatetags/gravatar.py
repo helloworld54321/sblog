@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-### gravatar.py ###############
+# ## gravatar.py ###############
 ### place inside a 'templatetags' directory inside the top level of a Django app (not project, must be inside an app)
 ### at the top of your page template include this:
 ### {% load gravatar %}
@@ -26,7 +26,7 @@ class GravatarUrlNode(template.Node):
         except template.VariableDoesNotExist:
             return ''
 
-        default = "http://127.0.0.1:8000/static/img/defaultavatar.png"
+        default = "http://127.0.0.1:8000/static/img/boy.jpg"
         size = 40
 
         gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"

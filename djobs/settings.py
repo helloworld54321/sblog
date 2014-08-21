@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*
 
 import sys
+
 reload(sys)
 sys.setdefaultencoding('gbk')
 
@@ -25,12 +26,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'blog',  # Or path to database file if using sqlite3.
-        'USER': 'root',                       # Not used with sqlite3.
-        'PASSWORD': '80321564',                   # Not used with sqlite3.
-        'HOST': 'localhost',                       # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '3306',                       # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'D:/sblog/blog.db',  # Or path to database file if using sqlite3.
+       # 'USER': 'root',  # Not used with sqlite3.
+      #  'PASSWORD': '80321564',  # Not used with sqlite3.
+      #  'HOST': 'localhost',  # Set to empty string for localhost. Not used with sqlite3.
+      #  'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -81,9 +82,9 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    ("css", os.path.join(STATIC_ROOT,'css')),
-    ("js", os.path.join(STATIC_ROOT,'js')),
-    ("images", os.path.join(STATIC_ROOT,'images')),
+    ("css", os.path.join(STATIC_ROOT, 'css')),
+    ("js", os.path.join(STATIC_ROOT, 'js')),
+    ("images", os.path.join(STATIC_ROOT, 'images')),
 )
 
 # List of finder classes that know how to find static files in
@@ -91,7 +92,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -101,8 +102,9 @@ SECRET_KEY = 'c@ys*2sff-a8cptyp*-#(l!1_$!zw1z650emky6bmbwp1n-%r9'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -111,6 +113,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'pagination.middleware.PaginationMiddleware',
+    # 'django.middleware.csrf.CsrfResponseMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -125,12 +129,14 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     "D:/sblog/templates",
+    "D:/sblog/templates/accounts",
     "D:/sblog/templates/simpleblog",
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request'
 )
 
 INSTALLED_APPS = (
@@ -141,14 +147,17 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    #'grappelli',
+    # 'grappelli',
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'django.contrib.markup',
     'django.contrib.comments',
     'django.contrib.staticfiles',
+    'accounts',
     'simpleblog',
+    'pagination',
+
 )
 
 # A sample logging configuration. The only tangible logging

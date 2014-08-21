@@ -1,0 +1,31 @@
+html {
+    color: #111;
+}
+
+body, td, th {
+    font: 12px/1.62 Helvetica,Arial,sans-serif;
+}
+
+
+body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+
+.grid-16-8 .article {
+    float: left;
+    padding-right: 40px;
+    width: 590px;
+}
+
+form {
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
+.item {
+    clear: both;
+    margin: 15px 0;
+}

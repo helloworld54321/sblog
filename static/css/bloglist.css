@@ -1,0 +1,109 @@
+body, p, h1, h2, h3, h4, table, td, th, ul, ol, textarea, input {
+    font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+}
+
+
+.ColLeft {
+    background-color: #f6f4f0;
+    margin: 0 0 10px;
+    padding: 0;
+    width: 162px;
+}
+
+.CategoryTree {
+    border: 1px solid #d4d4d4;
+    margin: 0;
+    padding: 0;
+}
+
+.CategoryTree .titlebar {
+    height: 30px;
+    line-height: 30px;
+}
+
+.CategoryTree .titlebar h3 {
+    color: #67ad03;
+    margin: 0;
+    text-align: center;
+}
+
+.CategoryTree ul {
+    margin: 0;
+    padding: 0;
+}
+
+.CategoryTree ul li .tit {
+    display: block;
+    font-weight: bold;
+}
+
+
+.CategoryTree a {
+    color: #000;
+    text-decoration: none;
+}
+
+.CategoryTree ul li {
+    border-top: 2px solid #ffffff;
+    cursor: pointer;
+    display: block;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    padding: 0 10px;
+    position: relative;
+    vertical-align: middle;
+}
+
+.CategoryTree ul li ul {
+    background: none repeat scroll 0 0 #f6f4f0;
+    border: 1px solid #666;
+    display: none;
+    float: right;
+    overflow: hidden;
+    position: absolute;
+    left: 160px;
+    text-align: right;
+    text-overflow: ellipsis;
+    top: 0;
+    white-space: nowrap;
+}
+
+#leftcolumn {
+    width: 170px;
+    float: left;
+    margin-top: 53px;
+    margin-right: 4px;
+    margin-left: 50px;
+    padding-top: 5px;
+    background-color: #ffffff;
+}
+
+
+#bloglist {
+    float: left;
+    margin-top: 80px;
+    padding-top: 5px;
+    background-color: #ffffff;
+}
+
+#asideblock {
+    float: left;
+    margin-top: 80px;
+    padding-top: 5px;
+    background-color: #ffffff;
+}
+#navBarRightBlock{
+    float: left;
+    margin-left: 100px;
+}
+.user-info{
+    float: left;
+    margin-left: 15px;
+}
+.user-name{
+    position: relative;
+    top: 4px;
+}
+
